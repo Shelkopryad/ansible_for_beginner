@@ -5,7 +5,7 @@
 
   tasks:
     - name: Запустить ruby script
-      command: ruby {{ src_dir }}/src/runner.rb
+      command: "ruby {{ src_dir }}/src/runner.rb"
 
     - name: Собрать контейнер
       command: "{{ docker_path }} build -t ansible_with_docker {{ src_dir }}"

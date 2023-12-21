@@ -1,0 +1,8 @@
+---
+- name: Run commands remotely
+  hosts: my_remote_host
+  gather_facts: yes
+
+  tasks:
+    - name: Run some script
+      command: "ls"
