@@ -1,0 +1,20 @@
+---
+- name: Выполнить команды локально
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Запустить ruby script
+      command: ruby {{ src_dir }}/src/runner.rb
+
+    - name: Собрать контейнер
+      command: "{{ docker_path }} build -t ansible_with_docker {{ src_dir }}"
+
+    - name: Запустить контейнер
+      command: "{{ docker_path }} run -it --name ansible_with_docker ansible_with_docker"
+
+    - name: Удалить контейнер
+      command: "{{ docker_path }} rm ansible_with_docker"
+
+    - name: Удалить образ
+      command: "{{ docker_path }} rmi ansible_with_docker"

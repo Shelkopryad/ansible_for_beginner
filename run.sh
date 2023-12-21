@@ -1,0 +1,1 @@
+ansible-playbook -i ansible/hosts ansible/setup.yml --extra-vars "{'src_dir':$PWD, 'docker_path':$(which docker)}" -vvv
