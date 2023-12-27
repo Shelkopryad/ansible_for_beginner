@@ -1,0 +1,4 @@
+---
+
+docker_path: /usr/local/bin/docker
+src_dir: $PWD

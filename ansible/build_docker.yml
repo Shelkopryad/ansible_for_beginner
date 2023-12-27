@@ -1,0 +1,24 @@
+- name: Build and run a docker container
+  hosts: default # vagrant прописывает default в .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory
+  become: true
+
+  tasks:
+    - name: Install Docker
+      include_role:
+        name: geerlingguy.docker
+
+    - name: Build a docker image
+      docker_image:
+        name: ruby_app
+        source: build
+        build:
+          path: "/vagrant" # путь к Dockerfile на виртуалке
+
+    - name: Run a docker container
+      docker_container:
+        name: ruby_app
+        image: ruby_app
+        state: started
+        detach: yes
+        ports:
+          - "5000:5000"
